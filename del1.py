@@ -36,7 +36,7 @@ def sortSublist(a):
             a[0], a[1] = a[1], a[0]
     return a
 
-# c2: using input size 3 for all lists  this function becomes independent of input size
+# c2: using input size 3 for all lists, this function becomes independent of input size
 # n and therefore will be linear.
 # 6 * O(1) (all elements get sorted)
 def merge(l, r):                        
@@ -64,7 +64,10 @@ def smallestDAC(a):
     ret = merge(l, r)[0:3]
     return ret
 
-# time complexity: T(n) = 2*T(n/2) + (c2 + c3)  <=> O() via master theorem.
+# time complexity: T(n) = 2*T(n/2) + (c2 + c3)
+# M.T: a = 2,  b=2,  f(n) = const = n^0
+# log_b(a) = 1 > log_b(f(n)) = 0; case 1 (https://www.programiz.com/dsa/master-theorem)
+# T(n) = n^log_b(a) = n^1 = O(n)
 # number of comparisons (best-case): 
 # number of comparisons (worst-case): 
 
