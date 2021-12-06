@@ -1,34 +1,34 @@
 def smallest(a):
-    if a[1] < a[0]:                 # c1: O(6)
+    if a[1] < a[0]:                 # c1: 6 * O(1)
         a[0], a[1] = a[1], a[0]     
     if a[2] < a[1]:                 
         a[1], a[2] = a[2], a[1]     
         if a[1] < a[0]:             
             a[0], a[1] = a[1], a[0] 
             
-    f, s, t = a[0], a[1], a[2]      # c2: O(3)
+    f, s, t = a[0], a[1], a[2]      # c2: 3 * O(1)
     for e in a[3:len(a)]:           # always executes n-3 times
-        if e < f:                   # c3: O(4)
+        if e < f:                   # c3: 4 * O(1)
             t = s                   
             s = f                    
             f = e                   
-        elif e < s:                 # c4: O(3)
+        elif e < s:                 # c4: 3 * O(1)
             t = s                   
             s = e                     
-        elif e < t:                 # c5: O(2)
+        elif e < t:                 # c5: 2 * O(1)
             t = e                   
     return (f, s, t)                # c6: O(1)
 
 # time complexity: f(n) = c1 + c2 + c6 + (n-3)(c3 + c4 + c5)
-# O(f(n)) = O(n-3) = O(n) - O(3) = O(n) 
-
+# O(f(n)) = O(n-3) = O(n) - O(1) = O(n) 
 # number of comparisons (best-case): 3 + n
 # number of comparisons (worst-case): 3 + 3n
 
 
 
-def sortSublist(a):
-    if a[1] < a[0]:                 # c1: O(6)
+# c1: 6 * O(1)
+def sortSublist(a):                 
+    if a[1] < a[0]:                 
         a[0], a[1] = a[1], a[0]     
     if a[2] < a[1]:                 
         a[1], a[2] = a[2], a[1]     
@@ -36,7 +36,10 @@ def sortSublist(a):
             a[0], a[1] = a[1], a[0]
     return a
 
-def merge(l, r):
+# c2: using input size 3 for all lists  this function becomes independent of input size
+# n and therefore will be linear.
+# 6 * O(1) (all elements get sorted)
+def merge(l, r):                        
     ret = []                            
     while len(l) > 0 and len(r) > 0:    
         if l[0] > r[0] or l[0] == r[0]: 
@@ -51,14 +54,19 @@ def merge(l, r):
         ret.append(er)
     return ret
 
+# T(n) = c3 + 2 * T(n/2) + c2
 def smallestDAC(a):
     if len(a) == 3:
-        return sortSublist(a)
+        return sortSublist(a)   # c3: Base case, 2 * O(1) + c1
     mid = len(a) // 2
     l = smallestDAC(a[mid:])
     r = smallestDAC(a[:mid])
     ret = merge(l, r)[0:3]
     return ret
+
+# time complexity: T(n) = 2*T(n/2) + (c2 + c3)  <=> O() via master theorem.
+# number of comparisons (best-case): 
+# number of comparisons (worst-case): 
 
 print(smallestDAC([2, 3, 1]))
 arr = [27, 5, 13,
