@@ -4,7 +4,7 @@ def smallest(a):
     if a[2] < a[1]:                 
         a[1], a[2] = a[2], a[1]     
         if a[1] < a[0]:             
-            a[0], a[1] = a[1], a[0] 
+            a[0], a[1] = a[1], a[0]
             
     f, s, t = a[0], a[1], a[2]      # c2: 3 * O(1)
     for e in a[3:len(a)]:           # always executes n-3 times
@@ -21,8 +21,7 @@ def smallest(a):
 
 # time complexity: f(n) = c1 + c2 + c6 + (n-3)(c3 + c4 + c5)
 # O(f(n)) = O(n-3) = O(n) - O(1) = O(n) 
-# number of comparisons (best-case): 3 + n
-# number of comparisons (worst-case): 3 + 3n
+
 
 
 
@@ -68,8 +67,7 @@ def smallestDAC(a):
 # M.T: a = 2,  b=2,  f(n) = const = n^0
 # log_b(a) = 1 > log_b(f(n)) = 0; case 1 (https://www.programiz.com/dsa/master-theorem)
 # T(n) = n^log_b(a) = n^1 = O(n)
-# number of comparisons (best-case): 
-# number of comparisons (worst-case): 
+
 
 print(smallestDAC([2, 3, 1]))
 arr = [27, 5, 13,
